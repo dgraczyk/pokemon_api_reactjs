@@ -1,6 +1,6 @@
 import './App.css';
 import NavBarContainer from './components/NavBarContainer'
-import GenerationContainer from './components/generation/GenerationContainer'
+import GenerationContainer from './components/pokemon_generation_types/PokemonGenerationTypesContainer'
 
 function App() {
   return (

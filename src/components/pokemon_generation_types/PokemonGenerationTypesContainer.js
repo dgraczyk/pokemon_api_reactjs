@@ -1,5 +1,5 @@
 import React from 'react'
-import GenerationCard from './GenerationCard'
+import GenerationCard from './PokemonGenerationType'
 import Typography from '@material-ui/core/Typography';
 
 const GenerationContainer = () => {
