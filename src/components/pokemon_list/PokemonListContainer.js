@@ -1,4 +1,7 @@
-import React from 'react'
+import React, {useEffect} from 'react'
+import { connect } from 'react-redux';
+import { getAllPokemonsRequest } from '../../redux';
+import PropTypes from 'prop-types';
 import PokemonItem from './PokemonItem'
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
@@ -13,34 +16,39 @@ const useStyles = makeStyles({
 const PokemonListContainer = (props) => {
   const classes = useStyles();
 
-  const pokemon = {
-    id: 1,
-    name: "bulbasaur",
-    img: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg",
-    types: [
-      {name: "grass"},
-      {name: "poison"},
-    ]
-  }
+  useEffect(() => {
+    props.getPokemons()    
+  }, [])
   
   return (
     <Container maxWidth="lg">
       <Grid
         container
         alignItems="flex-start">
-        <PokemonItem pokemon={pokemon}/>
-        <PokemonItem pokemon={pokemon}/>
-        <PokemonItem pokemon={pokemon}/>
-        <PokemonItem pokemon={pokemon}/>
-        <PokemonItem pokemon={pokemon}/>
-        <PokemonItem pokemon={pokemon}/>
-        <PokemonItem pokemon={pokemon}/>
-        <PokemonItem pokemon={pokemon}/>
-        <PokemonItem pokemon={pokemon}/>
-        <PokemonItem pokemon={pokemon}/>
+          {props.pokemons.map((pokemon) => (            
+            <PokemonItem key={pokemon.id} pokemon={pokemon}/>
+          ))}
       </Grid>
     </Container>
   )
 }
 
-export default PokemonListContainer
+PokemonListContainer.propTypes = {
+  getPokemons: PropTypes.func.isRequired,
+  loading: PropTypes.bool.isRequired  
+}
+
+const mapPropsToState = (state) => {
+  return {
+    pokemons: state.pokemons.pokemons,
+    loading: state.pokemons.loading,
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getPokemons: () => dispatch(getAllPokemonsRequest())
+  }
+}
+
+export default connect(mapPropsToState, mapDispatchToProps)(PokemonListContainer)
