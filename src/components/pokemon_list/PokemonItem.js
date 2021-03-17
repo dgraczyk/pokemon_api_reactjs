@@ -9,7 +9,8 @@ import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles({
   root: {
-    maxWidth: 250    
+    maxWidth: 250,
+    margin: "10px"
   },
   img: {
     objectFit: "fill"
