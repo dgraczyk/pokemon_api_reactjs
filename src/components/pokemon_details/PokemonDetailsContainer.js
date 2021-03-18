@@ -3,18 +3,69 @@ import { connect } from 'react-redux';
 import { getPokemonsDetailsRequest } from '../../redux';
 import PropTypes from 'prop-types';
 
-const PokemonDetailsContainer = (props) => {
-  
+import { makeStyles } from '@material-ui/core/styles';
+import Container from '@material-ui/core/Container';
+import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
+import CardMedia from '@material-ui/core/CardMedia';
+
+import PokemonType from './PokemonType'
+import PokemonStat from './PokemonStat'
+
+const useStyles = makeStyles({
+  media: {
+    width: "auto"    
+  },
+  margin: {
+    margin: '20px'
+  },
+  pokemonName: {
+    textTransform: 'capitalize'
+  }
+});
+
+function PokemonDetailsContainer(props) {
+  const classes = useStyles();
+
   useEffect(() => {
+    console.log(props.match.params.id)
     props.getPokemonDetails(props.match.params.id)    
   }, [])
 
   return (
-    <div>
-      PokemonDetailsContainer {props.match.params.id}
-      {props.pokemon.name}
-    </div>
-  )
+    <>    
+    <Container maxWidth="md">
+      <Grid>
+        <Grid item className={classes.margin}>
+          <img src={props.pokemon.img} alt={props.pokemon.name}/>
+          <Typography className={classes.pokemonName} component="h1" variant="h3" align="center" gutterBottom>
+              {props.pokemon.name}
+          </Typography>
+        </Grid>
+        <Grid container justify="center">
+          <Grid item>
+            <Typography className={classes.margin} variant="button">
+              <strong>Height</strong>{props.pokemon.height / 10} m
+            </Typography>
+          </Grid>
+          <Grid item>
+            <Typography className={classes.margin} variant="button">
+                <strong>Weight   </strong>{props.pokemon.weight / 10} kg
+            </Typography>
+          </Grid>
+        </Grid>
+      </Grid>
+      <Grid container justify="center">        
+        {props.pokemon.types.map((t) => (
+          <PokemonType key={t.name} name={t.name}/>
+        ))}
+      </Grid>
+      {props.pokemon.stats.map((s) => (
+          <PokemonStat key={s.name} name={s.name} value={s.stat}/>
+        ))}
+    </Container>
+    </>
+  );
 }
 
 PokemonDetailsContainer.propTypes = {
@@ -32,15 +83,17 @@ PokemonDetailsContainer.propTypes = {
     })),
     types: PropTypes.arrayOf(PropTypes.shape({
       name: PropTypes.string
-    })),
+    }))
   })
 }
 
 const mapPropsToState = (state) => {
+  console.log(state)
+  console.log(state.pokemonDetails.pokemon)
   return {
-    pokemon: state.pokemonDetails.pokemon,
+    pokemon: state.pokemonDetails.pokemon,    
     loading: state.pokemonDetails.loading,
-  }
+  }  
 }
 
 const mapDispatchToProps = (dispatch) => {

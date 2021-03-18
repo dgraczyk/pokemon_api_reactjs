@@ -1,8 +1,13 @@
 import { GET_POKEMON_DETAILS_REQUEST, GET_POKEMON_DETAILS_FAILURE, GET_POKEMON_DETAILS_SUCCESS } from './pokemonDetailsTypes'
 
+const emptyPokemonTemplate = {
+    types: [],
+    stats: []
+}
+
 const initialState = {
     loading: false,
-    pokemon: {},
+    pokemon: emptyPokemonTemplate,
     error: ''
 }
 
@@ -22,7 +27,7 @@ const pokemonsReducer = (state = initialState, action) => {
         case GET_POKEMON_DETAILS_FAILURE:
             return {
                 loading: false,
-                pokemon: {},
+                pokemon: emptyPokemonTemplate,
                 error: action.payload
             }
         default: return state
