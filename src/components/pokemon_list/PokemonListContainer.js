@@ -3,24 +3,21 @@ import { connect } from 'react-redux';
 import { getAllPokemonsRequest } from '../../redux';
 import PropTypes from 'prop-types';
 import PokemonItem from './PokemonItem'
-import { makeStyles } from '@material-ui/core/styles';
+
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
+import LoadingIndicator from '../LoadingIndicator'
 
-const useStyles = makeStyles({
-  root: {
-    display: "flex"    
-  },  
-});
 
-const PokemonListContainer = (props) => {
-  const classes = useStyles();
-
+const PokemonListContainer = (props) => { 
   useEffect(() => {
     props.getPokemons()    
   }, [])
   
-  return (
+  return (    
+    props.loading ?
+    <LoadingIndicator/>
+    :
     <Container maxWidth="lg">
       <Grid
         container

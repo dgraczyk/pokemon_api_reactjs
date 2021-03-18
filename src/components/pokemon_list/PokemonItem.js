@@ -15,6 +15,9 @@ const useStyles = makeStyles({
   },
   img: {
     objectFit: "fill"
+  },
+  pokemonName: {
+    textTransform: 'capitalize'
   }
 });
 
@@ -23,8 +26,7 @@ const PokemonItem = props => {
 
   return (
     <Card className={classes.root}>
-      <Link to={`/pokemons/${props.pokemon.name}`}>
-        <CardActionArea href={`/pokemons/${props.pokemon.name}`}>
+      <CardActionArea href={`/pokemons/${props.pokemon.name}/`}>
           <CardMedia
             className={classes.img}
             component="img"
@@ -34,12 +36,11 @@ const PokemonItem = props => {
             title={props.pokemon.name}
           />
           <CardContent>
-            <Typography gutterBottom variant="h5" component="h2" text="center">
+            <Typography className={classes.pokemonName} variant="h5" component="h2" text="center">
               {props.pokemon.name}
             </Typography>
           </CardContent>
-        </CardActionArea>
-      </Link>      
+        </CardActionArea>      
     </Card>
   )
 }

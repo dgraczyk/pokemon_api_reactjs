@@ -7,8 +7,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
-import CardMedia from '@material-ui/core/CardMedia';
 
+import LoadingIndicator from '../LoadingIndicator'
 import PokemonType from './PokemonType'
 import PokemonStat from './PokemonStat'
 
@@ -32,8 +32,10 @@ function PokemonDetailsContainer(props) {
     props.getPokemonDetails(props.match.params.id)    
   }, [])
 
-  return (
-    <>    
+  return (    
+    props.loading ?
+    <LoadingIndicator/>
+    :
     <Container maxWidth="md">
       <Grid>
         <Grid item className={classes.margin}>
@@ -45,12 +47,12 @@ function PokemonDetailsContainer(props) {
         <Grid container justify="center">
           <Grid item>
             <Typography className={classes.margin} variant="button">
-              <strong>Height</strong>{props.pokemon.height / 10} m
+              <strong>Height&nbsp;</strong>{props.pokemon.height / 10} m
             </Typography>
           </Grid>
           <Grid item>
             <Typography className={classes.margin} variant="button">
-                <strong>Weight   </strong>{props.pokemon.weight / 10} kg
+                <strong>Weight&nbsp;</strong>{props.pokemon.weight / 10} kg
             </Typography>
           </Grid>
         </Grid>
@@ -63,8 +65,7 @@ function PokemonDetailsContainer(props) {
       {props.pokemon.stats.map((s) => (
           <PokemonStat key={s.name} name={s.name} value={s.stat}/>
         ))}
-    </Container>
-    </>
+    </Container>    
   );
 }
 
@@ -88,8 +89,6 @@ PokemonDetailsContainer.propTypes = {
 }
 
 const mapPropsToState = (state) => {
-  console.log(state)
-  console.log(state.pokemonDetails.pokemon)
   return {
     pokemon: state.pokemonDetails.pokemon,    
     loading: state.pokemonDetails.loading,

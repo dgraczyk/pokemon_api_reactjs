@@ -7,7 +7,7 @@ const getPokemons = () => {
 }
 
 const getPokemonDetails = (name) => {
-  return axios.get(`https://pokeapi.co/api/v2/pokemon/${name}`);
+  return axios.get(`https://pokeapi.co/api/v2/pokemon/${name}/`);
 }
 
 export function* getAllPokemons() {
