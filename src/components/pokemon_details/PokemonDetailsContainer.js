@@ -27,8 +27,7 @@ const useStyles = makeStyles({
 function PokemonDetailsContainer(props) {
   const classes = useStyles();
 
-  useEffect(() => {
-    console.log(props.match.params.id)
+  useEffect(() => {    
     props.getPokemonDetails(props.match.params.id)    
   }, [])
 

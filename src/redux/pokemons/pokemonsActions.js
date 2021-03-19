@@ -1,8 +1,9 @@
 import { GET_ALL_POKEMONS_REQUEST, GET_ALL_POKEMONS_SUCCESS, GET_ALL_POKEMONS_FAILURE } from './pokemonsTypes'
 
-export const getAllPokemonsRequest = () => {
+export const getAllPokemonsRequest = (generationId) => {
     return {
-        type: GET_ALL_POKEMONS_REQUEST
+        type: GET_ALL_POKEMONS_REQUEST,
+        payload: generationId
     }
 }
 

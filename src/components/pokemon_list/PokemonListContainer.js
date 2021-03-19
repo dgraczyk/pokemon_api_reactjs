@@ -11,7 +11,8 @@ import LoadingIndicator from '../LoadingIndicator'
 
 const PokemonListContainer = (props) => { 
   useEffect(() => {
-    props.getPokemons()    
+    console.log(props.pokemons)
+    props.getPokemons(props.generationId)    
   }, [])
   
   return (    
@@ -32,10 +33,16 @@ const PokemonListContainer = (props) => {
 
 PokemonListContainer.propTypes = {
   getPokemons: PropTypes.func.isRequired,
-  loading: PropTypes.bool.isRequired  
+  loading: PropTypes.bool.isRequired,  
+  generationId: PropTypes.number
+}
+
+PokemonListContainer.defaultProps = {
+  generationId: 1
 }
 
 const mapPropsToState = (state) => {
+  console.log(state)
   return {
     pokemons: state.pokemons.pokemons,
     loading: state.pokemons.loading,
@@ -44,7 +51,7 @@ const mapPropsToState = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getPokemons: () => dispatch(getAllPokemonsRequest())
+    getPokemons: (generationId) => dispatch(getAllPokemonsRequest(generationId))
   }
 }
 
