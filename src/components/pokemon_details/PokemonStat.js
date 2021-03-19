@@ -12,7 +12,7 @@ const normalise = (value) => ((value - MIN) * 100) / (MAX - MIN);
 const selectColor = (name, theme) => {
   switch (name) {
     case "hp":
-      return theme.palette.secondary.light;
+      return theme.palette.primary.light;
     case "attack":
       return theme.palette.info.light;
     case "defense":
