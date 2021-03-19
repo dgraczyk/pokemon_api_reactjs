@@ -1,2 +1,10 @@
-export { getAllPokemonsRequest, getAllPokemonsSuccess, getAllPokemonsFailure } from './pokemons/pokemonsActions'
-export { getPokemonsDetailsRequest, getPokemonsDetailsSuccess, getPokemonsDetailsFailure } from './pokemonDetails/pokemonDetailsActions'
+export {
+  getAllPokemonsRequest,
+  getAllPokemonsSuccess,
+  getAllPokemonsFailure,
+} from "./pokemons/pokemonsActions";
+export {
+  getPokemonsDetailsRequest,
+  getPokemonsDetailsSuccess,
+  getPokemonsDetailsFailure,
+} from "./pokemonDetails/pokemonDetailsActions";

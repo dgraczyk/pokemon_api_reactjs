@@ -1,10 +1,10 @@
-import React from 'react'
-import CircularProgress from '@material-ui/core/CircularProgress';
+import React from "react";
+import CircularProgress from "@material-ui/core/CircularProgress";
 
 function LoadingIndicator() {
   return (
-    <CircularProgress style={{margin: "100px"}} size={100} color="primary" />
+    <CircularProgress style={{ margin: "100px" }} size={100} color="primary" />
   );
 }
 
-export default LoadingIndicator
+export default LoadingIndicator;
