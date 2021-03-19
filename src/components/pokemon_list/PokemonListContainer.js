@@ -11,9 +11,8 @@ import LoadingIndicator from '../LoadingIndicator'
 
 const PokemonListContainer = (props) => { 
   useEffect(() => {
-    console.log(props.pokemons)
     props.getPokemons(props.generationId)    
-  }, [])
+  }, [props.generationId])
   
   return (    
     props.loading ?

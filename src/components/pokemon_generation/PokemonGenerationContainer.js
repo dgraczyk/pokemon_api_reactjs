@@ -1,6 +1,5 @@
 import React from 'react'
-import PropTypes from 'prop-types'
-import { connect } from 'react-redux'
+
 import PokemonGenerationSelector from './PokemonGenerationSelector'
 import PokemonListContainer from '../pokemon_list/PokemonListContainer'
 
@@ -16,16 +15,4 @@ const PokemonGenerationContainer = (props) => {
   )
 }
 
-PokemonGenerationContainer.propTypes = {
-  props: PropTypes
-}
-
-const mapStateToProps = (state) => ({
-  
-})
-
-const mapDispatchToProps = {
-  
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(PokemonGenerationContainer)
+export default PokemonGenerationContainer

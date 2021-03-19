@@ -27,7 +27,7 @@ export function* getAllPokemons(action) {
             return {
                 "id": item.response.data.id,
                 "name": item.response.data.name,
-                "img": item.response.data.sprites.other.officialartwork.front_default,
+                "img": item.response.data.sprites.other.dream_world.front_default,
                 "types": item.response.data.types.map((t) => {return {"name": t.type.name}})
             }
         }).sort((a,b) => a.id - b.id)  
